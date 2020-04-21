@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using EmployeeLeaveTraining.Contracts;
 using EmployeeLeaveTraining.Repository;
+using EmployeeLeaveTraining.Mappings;
+using AutoMapper;
 
 namespace EmployeeLeaveTraining
 {
@@ -32,6 +34,9 @@ namespace EmployeeLeaveTraining
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            //Adding the mappings between data types and ViewModels using AutoMapper package
+            services.AddAutoMapper(typeof(Maps));
 
             //Setting the relations between the contracts (interfaces) created and their specific repositories (implmentation classes)
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
