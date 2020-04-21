@@ -18,32 +18,35 @@ namespace EmployeeLeaveTraining.Repository
 
         public bool Create(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveHistory.Add(entity);
+            return Save();
         }
 
         public bool Delete(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveHistory.Remove(entity);
+            return Save();
         }
 
         public ICollection<LeaveHistory> FindAll()
-        {
-            throw new NotImplementedException();
+        {            
+            return _db.LeaveHistory.ToList();
         }
 
         public LeaveHistory FindById(int id)
         {
-            throw new NotImplementedException();
+            return _db.LeaveHistory.FirstOrDefault(x => x.Id == id);
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return _db.SaveChanges() > 0;            
         }
 
         public bool Update(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveHistory.Update(entity);
+            return Save();
         }
     }
 }

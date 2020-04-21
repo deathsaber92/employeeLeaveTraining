@@ -18,32 +18,35 @@ namespace EmployeeLeaveTraining.Repository
 
         public bool Create(LeaveAllocation entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveAllocation.Add(entity);
+            return Save();
         }
 
         public bool Delete(LeaveAllocation entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveAllocation.Remove(entity);
+            return Save();
         }
 
         public ICollection<LeaveAllocation> FindAll()
         {
-            throw new NotImplementedException();
+            return _db.LeaveAllocation.ToList();
         }
 
         public LeaveAllocation FindById(int id)
         {
-            throw new NotImplementedException();
+            return _db.LeaveAllocation.FirstOrDefault(x => x.Id == id);
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return _db.SaveChanges() > 0;
         }
 
         public bool Update(LeaveAllocation entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveAllocation.Update(entity);
+            return Save();
         }
     }
 }
