@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EmployeeLeaveTraining.Data
 {
     /// <summary>
-    /// The history of leaves
+    /// The history of leaves with all their details
     /// </summary>
     public class LeaveHistory
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EmployeeLeaveTraining.Data
 {
     /// <summary>
-    /// Extension for the IdentityUser which is already listed in the dbo.AspNetUsers
+    /// Extension for the IdentityUser which is already listed in the dbo.AspNetUsers implementing some extra data properties for an employee
     /// </summary>
     public class Employee : IdentityUser
     {

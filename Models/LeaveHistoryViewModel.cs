@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeLeaveTraining.Models
 {
+    /// <summary>
+    /// View model for leave history
+    /// </summary>
     public class LeaveHistoryViewModel
     {
         public int Id { get; set; }     

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeLeaveTraining.Models
 {
+    /// <summary>
+    /// View model for details leave type
+    /// </summary>
     public class DetailsLeaveTypeViewModel
     {
         public int Id { get; set; }
@@ -13,6 +16,9 @@ namespace EmployeeLeaveTraining.Models
         public DateTime DateCreated { get; set; }
     }
 
+    /// <summary>
+    /// View model for create leave type
+    /// </summary>
     public class CreateLeaveTypeViewModel
     {
         [Required]

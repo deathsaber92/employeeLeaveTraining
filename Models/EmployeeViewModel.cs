@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeLeaveTraining.Models
 {
+    /// <summary>
+    /// View model for the employee
+    /// </summary>
     public class EmployeeViewModel 
     {
         public int Id { get; set; }

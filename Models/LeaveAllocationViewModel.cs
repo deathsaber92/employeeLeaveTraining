@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeLeaveTraining.Models
 {
+    /// <summary>
+    /// View model for leave allocation
+    /// </summary>
     public class LeaveAllocationViewModel
     {      
         public int Id { get; set; }

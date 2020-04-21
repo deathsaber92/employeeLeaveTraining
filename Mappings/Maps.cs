@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeLeaveTraining.Mappings
 {
+    /// <summary>
+    /// Mapping the data types with their view models
+    /// </summary>
     public class Maps : Profile
     {
         public Maps()
