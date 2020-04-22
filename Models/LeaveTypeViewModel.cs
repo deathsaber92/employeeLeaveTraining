@@ -9,20 +9,12 @@ namespace EmployeeLeaveTraining.Models
     /// <summary>
     /// View model for details leave type
     /// </summary>
-    public class DetailsLeaveTypeViewModel
+    public class LeaveTypeViewModel
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        [Display(Name="Date Created")]
-        public DateTime DateCreated { get; set; }
-    }
-
-    /// <summary>
-    /// View model for create leave type
-    /// </summary>
-    public class CreateLeaveTypeViewModel
-    {
         [Required]
         public string Name { get; set; }
+        [Display(Name="Date Created")]
+        public DateTime? DateCreated { get; set; }
     }
 }

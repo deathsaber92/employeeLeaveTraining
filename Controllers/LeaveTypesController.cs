@@ -31,7 +31,7 @@ namespace EmployeeLeaveTraining.Controllers
             //Getting the data
             var leaveTypes = _repo.FindAll().ToList();
             //Mapping the data to the view model
-            var model = _mapper.Map<List<LeaveType>, List<DetailsLeaveTypeViewModel>>(leaveTypes);
+            var model = _mapper.Map<List<LeaveType>, List<LeaveTypeViewModel>>(leaveTypes);
             //Passing the model tot he view
             return View(model);
         }
@@ -51,17 +51,34 @@ namespace EmployeeLeaveTraining.Controllers
         // POST: LeaveTypes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(LeaveTypeViewModel model) 
         {
             try
             {
-                // TODO: Add insert logic here
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                //Map the model to the LeaveType data
+                var leaveType = _mapper.Map<LeaveType>(model);
+                //Adding the current server time
+                leaveType.DateCreated = DateTime.Now;
+                //Create entity with the leaveType data
+                var isSuccess = _repo.Create(leaveType);
+
+                //If entity was not created add an error to the ModelState
+                if (!isSuccess)
+                {
+                    ModelState.AddModelError("", "Something went wrong...");
+                    return View(model);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Something went wrong...");
+                return View(model);
             }
         }
 
