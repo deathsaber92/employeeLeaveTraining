@@ -28,6 +28,11 @@ namespace EmployeeLeaveTraining.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.LeaveAllocation.Any(x => x.Id == id);
+        }
+
         public ICollection<LeaveAllocation> FindAll()
         {
             return _db.LeaveAllocation.ToList();

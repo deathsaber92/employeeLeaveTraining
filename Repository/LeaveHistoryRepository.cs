@@ -28,6 +28,11 @@ namespace EmployeeLeaveTraining.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.LeaveHistory.Any(x => x.Id == id);
+        }
+
         public ICollection<LeaveHistory> FindAll()
         {            
             return _db.LeaveHistory.ToList();
