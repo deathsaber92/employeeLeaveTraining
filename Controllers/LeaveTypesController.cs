@@ -6,11 +6,13 @@ using AutoMapper;
 using EmployeeLeaveTraining.Contracts;
 using EmployeeLeaveTraining.Data;
 using EmployeeLeaveTraining.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeLeaveTraining.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class LeaveTypesController : Controller
     {
         private readonly ILeaveTypeRepository _repo;
@@ -22,10 +24,11 @@ namespace EmployeeLeaveTraining.Controllers
             _mapper = mapper;
         }
 
+
         /// <summary>
         /// Index of leave types
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>        
         public ActionResult Index()
         {
             //Getting the data
