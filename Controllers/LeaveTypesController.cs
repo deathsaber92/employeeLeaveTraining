@@ -26,20 +26,24 @@ namespace EmployeeLeaveTraining.Controllers
 
 
         /// <summary>
-        /// Index of leave types
+        /// GET: Index of leave types
         /// </summary>
         /// <returns></returns>        
         public ActionResult Index()
         {
             //Getting the data
             var leaveTypes = _repo.FindAll().ToList();
-            //Mapping the data to the view model
+            //Mapping the retrieved data to the view model and to the repository data
             var model = _mapper.Map<List<LeaveType>, List<LeaveTypeViewModel>>(leaveTypes);
             //Passing the model tot he view
             return View(model);
         }
 
-        // GET: LeaveTypes/Details/5
+        /// <summary>
+        /// GET: Gets the details about a leave type for the details view
+        /// </summary>
+        /// <param name="id">The id of the leave type</param>
+        /// <returns></returns>
         public ActionResult Details(int id)
         {
             if (!_repo.Exists(id))
@@ -53,13 +57,20 @@ namespace EmployeeLeaveTraining.Controllers
             return View(model);
         }
 
-        // GET: LeaveTypes/Create
+        /// <summary>
+        /// GET: Returning the view model for creation of a new leave type
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: LeaveTypes/Create
+        /// <summary>
+        /// POST: Creating the leave type 
+        /// </summary>
+        /// <param name="model">The data filled in the form</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LeaveTypeViewModel model) 
@@ -93,7 +104,11 @@ namespace EmployeeLeaveTraining.Controllers
             }
         }
 
-        // GET: LeaveTypes/Edit/5
+        /// <summary>
+        /// GET: Editing the desired leave type based on id
+        /// </summary>
+        /// <param name="id">The id of the leave type</param>
+        /// <returns></returns>
         public ActionResult Edit(int id)
         {
             if (!_repo.Exists(id))
@@ -107,7 +122,11 @@ namespace EmployeeLeaveTraining.Controllers
             return View(model);
         }
 
-        // POST: LeaveTypes/Edit/5
+        /// <summary>
+        /// POST: Editing the leave type according to the changes made in the model
+        /// </summary>
+        /// <param name="model">The data made in the form</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(LeaveTypeViewModel model)
@@ -135,8 +154,12 @@ namespace EmployeeLeaveTraining.Controllers
                 return View(model);
             }
         }
-
-        // GET: LeaveTypes/Delete/5
+         
+        /// <summary>
+        /// GET: Deleting the leave type by id
+        /// </summary>
+        /// <param name="id">The id of the leave type</param>
+        /// <returns></returns>
         public ActionResult Delete(int id)
         {
             var leaveType = _repo.FindById(id);
@@ -154,35 +177,6 @@ namespace EmployeeLeaveTraining.Controllers
             }
 
             return RedirectToAction(nameof(Index));
-        }
-
-        // POST: LeaveTypes/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, LeaveTypeViewModel model)
-        {
-            try
-            {
-                var leaveType = _repo.FindById(id);    
-                
-                if( leaveType == null)
-                {
-                    return NotFound();
-                }
-
-                var isSuccess = _repo.Delete(leaveType);
-
-                if (!isSuccess)
-                {
-                    return View(model);
-                }
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View(model);
-            }
-        }
+        }        
     }
 }
