@@ -34,6 +34,12 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a class="btn btn-outline-warning" asp-action="Index" asp-route-id="@Model.Id">
+            <i class="fa fa-pencil-square-o"></i> Edit
+        </a>    
+        <a class="btn btn-outline-danger" asp-action="Index">
+            <i class="fa fa-undo"></i> Back
+        </a>
+    </div>
 </div>
