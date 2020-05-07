@@ -19,9 +19,9 @@ namespace EmployeeLeaveTraining.Controllers
         private readonly ILeaveTypeRepository _leaveTypeRepo;
         private readonly ILeaveAllocationRepository _leaveAllocationRepo;
         private readonly IMapper _mapper;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<Employee> _userManager;
 
-        public LeaveAllocationController(ILeaveTypeRepository typeRepo, ILeaveAllocationRepository allocationRepo, IMapper mapper, UserManager<IdentityUser> userManager)
+        public LeaveAllocationController(ILeaveTypeRepository typeRepo, ILeaveAllocationRepository allocationRepo, IMapper mapper, UserManager<Employee> userManager)
         {
             _leaveTypeRepo = typeRepo;
             _leaveAllocationRepo = allocationRepo;
@@ -84,6 +84,18 @@ namespace EmployeeLeaveTraining.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        /// <summary>
+        /// GET: Retrieving the list of employees
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ListEmployees()
+        {
+            var employees = _userManager.GetUsersInRoleAsync("Employee").Result;
+            var model = _mapper.Map<List<EmployeeViewModel>>(employees);
+
+            return View(model);
         }
     }
 }

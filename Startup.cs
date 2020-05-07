@@ -43,7 +43,7 @@ namespace EmployeeLeaveTraining
             services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
             services.AddScoped<ILeaveHistoryRepository, LeaveHistoryRepository>();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = false)
                   .AddRoles<IdentityRole>()
                   .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -55,13 +55,13 @@ namespace EmployeeLeaveTraining
         public void Configure(
             IApplicationBuilder app,
             IWebHostEnvironment env,
-            UserManager<IdentityUser> userManager, 
+            UserManager<Employee> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();               
+                app.UseDatabaseErrorPage();
             }
             else
             {
