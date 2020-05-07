@@ -1,7 +1,9 @@
 ﻿using EmployeeLeaveTraining.Contracts;
 using EmployeeLeaveTraining.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,12 +43,23 @@ namespace EmployeeLeaveTraining.Repository
 
         public ICollection<LeaveAllocation> FindAll()
         {
-            return _db.LeaveAllocation.ToList();
+            return _db.LeaveAllocation
+                .Include(q => q.LeaveType)
+                .ToList();
         }
 
         public LeaveAllocation FindById(int id)
         {
             return _db.LeaveAllocation.FirstOrDefault(x => x.Id == id);
+        }
+
+        public ICollection<LeaveAllocation> GetLeaveAllocations(string id)
+        {
+            var period = DateTime.Now.Year;
+
+            return FindAll()
+                .Where(x => x.EmployeeId == id && x.Period == period)
+                .ToList();
         }
 
         public bool Save()

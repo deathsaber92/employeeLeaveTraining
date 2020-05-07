@@ -97,5 +97,24 @@ namespace EmployeeLeaveTraining.Controllers
 
             return View(model);
         }
+
+        /// <summary>
+        /// GET: Retrieving the leave allocations for an employee by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Details(string id)
+        {
+            var employee = _mapper.Map<EmployeeViewModel>(_userManager.FindByIdAsync(id).Result); 
+            var allocations = _mapper.Map<List<LeaveAllocationViewModel>>(_leaveAllocationRepo.GetLeaveAllocations(id));           
+
+            var model = new ViewAllocationsViewModel
+            {
+                Employee = employee,
+                LeaveAllocations = allocations
+            };
+
+            return View(model);
+        }
     }
 }

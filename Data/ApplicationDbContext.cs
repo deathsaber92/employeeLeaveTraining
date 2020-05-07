@@ -18,5 +18,6 @@ namespace EmployeeLeaveTraining.Data
         public DbSet<LeaveHistory> LeaveHistory { get; set; }
         public DbSet<LeaveType> LeaveType { get; set; }
         public DbSet<EmployeeLeaveTraining.Models.LeaveTypeViewModel> DetailsLeaveTypeViewModel { get; set; }
+        public DbSet<EmployeeLeaveTraining.Models.EmployeeViewModel> EmployeeViewModel { get; set; }
     }
 }

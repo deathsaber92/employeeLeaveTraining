@@ -15,5 +15,12 @@ namespace EmployeeLeaveTraining.Contracts
         /// <param name="emplyeeId">Employee id</param>
         /// <returns>True: was allocated / False: was not allocated</returns>
         bool CheckAllocation(int leaveTypeid, string emplyeeId);
+
+        /// <summary>
+        /// Gets all the leave allocations for one employee by id
+        /// </summary>
+        /// <param name="id">Employee id</param>
+        /// <returns>A collection of LeaveAllocation</returns>
+        ICollection<LeaveAllocation> GetLeaveAllocations(string id);
     }
 }
