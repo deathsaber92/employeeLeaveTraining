@@ -33,6 +33,7 @@ namespace EmployeeLeaveTraining.Models
         [DisplayName("Date of birth")]
         public DateTime DateOfBirth { get; set; }
 
+        [DisplayName("Date joined")]
         public DateTime DateJoined { get; set; }
     }
 }
