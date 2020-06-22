@@ -44,13 +44,18 @@ namespace EmployeeLeaveTraining.Repository
         public ICollection<LeaveAllocation> FindAll()
         {
             return _db.LeaveAllocation
-                .Include(q => q.LeaveType)
+                .Include(q => q.LeaveType)                      
                 .ToList();
         }
 
         public LeaveAllocation FindById(int id)
         {
-            return _db.LeaveAllocation.FirstOrDefault(x => x.Id == id);
+            var leaveAllocation = _db.LeaveAllocation
+                .Include(q => q.LeaveType)
+                .Include(q => q.Employee)
+                .FirstOrDefault(x => x.Id == id);
+
+            return leaveAllocation;
         }
 
         public ICollection<LeaveAllocation> GetLeaveAllocations(string id)

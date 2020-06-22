@@ -20,6 +20,7 @@ namespace EmployeeLeaveTraining.Mappings
             CreateMap<LeaveHistory, LeaveHistoryViewModel>().ReverseMap();
             CreateMap<LeaveAllocation, LeaveAllocationViewModel>().ReverseMap();   
             CreateMap<Employee, EmployeeViewModel>().ReverseMap();
+            CreateMap<LeaveAllocation, EditLeaveAllocationViewModel>().ReverseMap();
         }
     }
 }

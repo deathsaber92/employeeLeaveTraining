@@ -8,6 +8,7 @@ using EmployeeLeaveTraining.Data;
 using EmployeeLeaveTraining.Data.Migrations;
 using EmployeeLeaveTraining.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +49,42 @@ namespace EmployeeLeaveTraining.Controllers
 
             //Passing the model tot he view
             return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var leaveAllocation = _leaveAllocationRepo.FindById(id);
+            var model = _mapper.Map<EditLeaveAllocationViewModel>(leaveAllocation); 
+            return View(model);           
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditLeaveAllocationViewModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var record = _leaveAllocationRepo.FindById(model.Id);
+                record.NumberOfDays = model.NumberOfDays;  
+                var isSuccess = _leaveAllocationRepo.Update(record);
+
+                if (!isSuccess)
+                {
+                    ModelState.AddModelError("", "Error while saving!");
+                    return View(model);
+                }
+                
+                return RedirectToAction(nameof(Details), new { id = model.EmployeeId} );
+            }
+            catch
+            {
+                return View(model);
+            }
         }
 
         /// <summary>
